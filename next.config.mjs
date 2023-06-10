@@ -4,6 +4,10 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
+  images: {
+    domains: ['png.pngtree.com'],
+  },
 }
+
 
 export default nextConfig
