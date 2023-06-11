@@ -1,19 +1,32 @@
+"use client"
+
 import "@/styles/globals.css"
 import "@/styles/style.css"
-import "@/styles/vendors/feather/feather.css";
-import "@/styles/vendors/mdi/css/materialdesignicons.min.css";
-import "@/styles/vendors/ti-icons/css/themify-icons.css";
-import "@/styles/vendors/typicons/typicons.css";
-import "@/styles/vendors/simple-line-icons/css/simple-line-icons.css";
-import "@/styles/vendors/css/vendor.bundle.base.css";
+import "@/styles/vendors/feather/feather.css"
+import "@/styles/vendors/mdi/css/materialdesignicons.min.css"
+import "@/styles/vendors/ti-icons/css/themify-icons.css"
+import "@/styles/vendors/typicons/typicons.css"
+import "@/styles/vendors/simple-line-icons/css/simple-line-icons.css"
+import "@/styles/vendors/css/vendor.bundle.base.css"
 import "@/js/select.dataTables.min.css"
-
+import * as React from "react"
 import { Metadata } from "next"
 import Image from "next/image"
 
 import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
 
@@ -39,6 +52,7 @@ interface RootLayoutProps {
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
+  const [showMobileMenu, setShowMobileMenu] = React.useState<boolean>(false)
   return (
     <div className="container-scroller">
       <nav className="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
@@ -54,10 +68,20 @@ export default function RootLayout({ children }: RootLayoutProps) {
           </div>
           <div>
             <a className="navbar-brand brand-logo" href="index.html">
-              <Image src="https://png.pngtree.com/element_our/png/20180918/simple-eagle-logo-png_100655.jpg" alt="logo" width={500} height={500} />
+              <Image
+                src="https://png.pngtree.com/element_our/png/20180918/simple-eagle-logo-png_100655.jpg"
+                alt="logo"
+                width={500}
+                height={500}
+              />
             </a>
             <a className="navbar-brand brand-logo-mini" href="index.html">
-              <Image src="https://png.pngtree.com/element_our/png/20180918/simple-eagle-logo-png_100655.jpg" alt="logo" width={500} height={500} />
+              <Image
+                src="https://png.pngtree.com/element_our/png/20180918/simple-eagle-logo-png_100655.jpg"
+                alt="logo"
+                width={500}
+                height={500}
+              />
             </a>
           </div>
         </div>
@@ -356,13 +380,83 @@ export default function RootLayout({ children }: RootLayoutProps) {
               </div>
             </li>
           </ul>
-          <button
-            className="navbar-toggler navbar-toggler-right d-lg-none align-self-center"
-            type="button"
-            data-bs-toggle="offcanvas"
-          >
-            <span className="mdi mdi-menu"></span>
-          </button>
+
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button
+                variant="outline"
+                className="navbar-toggler navbar-toggler-right d-lg-none align-self-center"
+                type="button"
+              >
+                {" "}
+                <span className="mdi mdi-menu"></span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent position="left" size="lg">
+              <SheetHeader>
+                <SheetTitle>Menu</SheetTitle>
+                <SheetDescription>
+                  <div className="text-docoration-none">
+                    <ul className="nav">
+                      <li className="nav-item">
+                        <a className="nav-link" href="index.html">
+                          <i className="mdi mdi-grid-large menu-icon"></i>
+                          <span className="menu-title">Dashboard</span>
+                        </a>
+                      </li>
+                      <li className="nav-item nav-category">UI Elements</li>
+                      <li className="nav-item">
+                        <a
+                          className="nav-link"
+                          data-bs-toggle="collapse"
+                          href="#ui-basic"
+                          aria-expanded="false"
+                          aria-controls="ui-basic"
+                        >
+                          <i className="menu-icon mdi mdi-floor-plan"></i>
+                          <span className="menu-title">UI Elements</span>
+                          <i className="menu-arrow"></i>
+                        </a>
+                        <div className="collapse" id="ui-basic">
+                          <ul className="nav flex-column sub-menu">
+                            <li className="nav-item">
+                              {" "}
+                              <a
+                                className="nav-link"
+                                href="pages/ui-features/buttons.html"
+                              >
+                                Buttons
+                              </a>
+                            </li>
+                            <li className="nav-item">
+                              {" "}
+                              <a
+                                className="nav-link"
+                                href="pages/ui-features/dropdowns.html"
+                              >
+                                Dropdowns
+                              </a>
+                            </li>
+                            <li className="nav-item">
+                              {" "}
+                              <a
+                                className="nav-link"
+                                href="pages/ui-features/typography.html"
+                              >
+                                Typography
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </SheetDescription>
+              </SheetHeader>
+
+              <SheetFooter></SheetFooter>
+            </SheetContent>
+          </Sheet>
         </div>
       </nav>
       <div className="container-fluid page-body-wrapper">

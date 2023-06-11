@@ -5,7 +5,8 @@ import { Icons } from "@/components/icons"
 export type NavItem = {
     title: string
     href: string
-    disabled?: boolean
+    disabled?: boolean | undefined;
+    external?: boolean | undefined;
 }
 
 export type SidebarNavItem = {
