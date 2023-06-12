@@ -1,4 +1,4 @@
-"use client"
+
 
 import "@/styles/globals.css"
 import "@/styles/style.css"
@@ -9,7 +9,6 @@ import "@/styles/vendors/typicons/typicons.css"
 import "@/styles/vendors/simple-line-icons/css/simple-line-icons.css"
 import "@/styles/vendors/css/vendor.bundle.base.css"
 import "@/js/select.dataTables.min.css"
-import * as React from "react"
 import { Metadata } from "next"
 import Image from "next/image"
 
@@ -52,7 +51,6 @@ interface RootLayoutProps {
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
-  const [showMobileMenu, setShowMobileMenu] = React.useState<boolean>(false)
   return (
     <div className="container-scroller">
       <nav className="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
